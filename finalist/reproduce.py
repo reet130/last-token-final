@@ -10,8 +10,8 @@ import person_vote as pv
 import redetect as r
 
 MEMBERS = ["base", "s1", "s2", "base_flip", "s1_flip", "s2_flip"]
-LEADER = "redetect_strong_ens-base-s1-s2-base_flip-s1_flip-s2_flip_pvote_nowin_legs_veto.csv"
-POSE = "pose_family_w050_on_flip_pose.csv"
+LEADER = "standard_box_check.csv"
+POSE = "enhanced_person_check.csv"
 
 
 def predictions(split):
