@@ -15,15 +15,23 @@
 
 ## Как повторить результат на CPU
 
-1. Склонируйте репозиторий и перейдите в его корень. Распакуйте [датасет организаторов](https://www.kaggle.com/competitions/rascar-hack-case-1/data) в `data/rascar-hack-case-1/`. Для быстрой проверки достаточно пяти файлов рядом друг с другом: `scoring_policy.json`, `train.csv`, `train_frames.csv`, `test.csv`, `sample_submission.csv`. Изображения понадобятся только при повторном запуске детекторов.
-2. В окружении Python 3.13 установите зависимости и выполните сборку:
+Скачайте репозиторий и откройте его каталог.
 
 ~~~sh
-python -m pip install -r finalist/requirements.txt
-python finalist/reproduce.py
+git clone https://github.com/reet130/last-token-final.git
+cd last-token-final
 ~~~
 
-Если датасет уже скачан, укажите его папку: `python finalist/reproduce.py --data "/path/to/rascar-hack-case-1"`.
+1. Распакуйте [датасет организаторов](https://www.kaggle.com/competitions/rascar-hack-case-1/data) в `data/rascar-hack-case-1/`. Для быстрой проверки достаточно пяти файлов рядом друг с другом: `scoring_policy.json`, `train.csv`, `train_frames.csv`, `test.csv`, `sample_submission.csv`. Изображения понадобятся только при повторном запуске детекторов.
+2. Создайте отдельное окружение Python 3.13. В Windows PowerShell выполните команды ниже. В Linux и macOS используйте `python3.13 -m venv .venv` и замените `.\.venv\Scripts\python.exe` на `./.venv/bin/python`.
+
+~~~powershell
+py -3.13 -m venv .venv
+.\.venv\Scripts\python.exe -m pip install -r finalist/requirements.txt
+.\.venv\Scripts\python.exe finalist/reproduce.py
+~~~
+
+Если датасет уже скачан, добавьте к последней команде `--data "/path/to/rascar-hack-case-1"`.
 
 Скрипт сопоставит исходные рамки с сохранёнными предсказаниями моделей, рассчитает AP каждого отложенного дня и запишет два CSV в `reproduced/`. Для каждого файла он проверяет порядок и состав всех 362 ID, диапазон оценок и совпадение с отправленной версией с точностью до 10⁻¹². Успех обозначается двумя строками `Verified 362 scores`. Сохранённые ответы в `submissions/` используются только для проверки.
 
