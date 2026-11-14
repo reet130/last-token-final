@@ -1,0 +1,8 @@
+data/
+weights/
+reproduced/
+__pycache__/
+.venv/
+outputs/redetect_strong/runs/
+outputs/redetect_strong/yolo/
+oof/
